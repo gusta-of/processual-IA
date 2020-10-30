@@ -115,15 +115,23 @@ public class Grafo {
 	public void imprimeArvore(){
 		for (int i=0; i<arestas.size();i++)
 			System.out.println(
-				this.arestas.get(i).getOrigem().getNome() + 
-				this.arestas.get(i).getDestino().getNome() + 
-				" - " + 
-				this.arestas.get(i).getPeso() + " | ");
+				"Custo:" + this.arestas.get(i).getPeso() + 
+				" | De: " + this.arestas.get(i).getOrigem().getNome() + 
+				" -> Para: " + this.arestas.get(i).getDestino().getNome());
+				
 		System.out.println();
 	}
 
 	public ArrayList<Vertice> getVertices() {
 		return vertices;
+	}
+	public Vertice getVertice(String nome) {
+		for (Vertice vertice : this.vertices) {
+			if(nome == vertice.getNome()){
+				return vertice;
+			}
+		}
+		return null;
 	}
 	
 	public int posicaoVertice(String nome){
@@ -160,68 +168,31 @@ public class Grafo {
     
 
 	// implementacao original
-	// public	ArrayList<Aresta> buscaEmLargura(String raiz, String buscado){
-
-    // 	ArrayList<Aresta> arvoreLargura = new ArrayList<Aresta>(); 
-    // 	for (Vertice v:this.vertices) {
-    // 		v.setCor("branco");
-    // 	}
-    	
-    // 	Vertice v = this.acharVertice(raiz);
-    // 	v.setCor("cinza");
-    	
-    // 	LinkedList<Vertice> queue= new LinkedList<Vertice>();
-    // 	queue.add(v);
-    // 	boolean achou = false;
-    // 	while (queue.size() > 0) {
-    // 		Vertice current = queue.remove();
-    // 		// current.setCor("preto");
-    // 		if (current.getNome().equals(buscado)) {
-    // 			achou = true;
-    // 			break;
-    // 		}
-    		
-    // 		for (Vertice visinho:current.getVizinhos()) {
-    // 			if(visinho.getCor().equals("branco")){
-    // 				visinho.setCor("cinza");
-    // 				queue.add(visinho);
-    // 				arvoreLargura.add(this.acharAresta(current, visinho));
-    // 			}
-    // 		}
-    // 	}
-    	
-    // 	if (achou) {
-    // 		System.out.println("Vertice encontrado");
-    // 	} else {
-    // 		System.out.println("Vertice nao encontrado");
-    // 	}
-    	
-    // 	return arvoreLargura;
-    // }
-    
-    public	ArrayList<Aresta> buscaEmLargura(String raiz, String buscado){
+	public	ArrayList<Aresta> buscaEmLargura(String raiz, String buscado){
 
     	ArrayList<Aresta> arvoreLargura = new ArrayList<Aresta>(); 
+    	for (Vertice v:this.vertices) {
+    		v.setCor("branco");
+    	}
     	
     	Vertice v = this.acharVertice(raiz);
-		v.setVisitado(true);
-		
-    	LinkedList<Vertice> borda= new LinkedList<Vertice>();
-    	borda.add(v);
+    	v.setCor("cinza");
+    	
+    	LinkedList<Vertice> queue= new LinkedList<Vertice>();
+    	queue.add(v);
     	boolean achou = false;
-    	while (borda.size() > 0) {
-			Vertice current = borda.remove();
-    		// current.setCor("preto");
+    	while (queue.size() > 0) {
+    		Vertice current = queue.remove();
+    		current.setCor("preto");
     		if (current.getNome().equals(buscado)) {
-                achou = true;
-                current.setVisitado(true);
+    			achou = true;
     			break;
     		}
     		
-    		for (Vertice visinho:current.getFilhos()) {
-    			if(!visinho.isVisitado()){
-    				visinho.setVisitado(true);
-					borda.add(visinho);
+    		for (Vertice visinho:current.getVizinhos()) {
+    			if(visinho.getCor().equals("branco")){
+    				visinho.setCor("cinza");
+    				queue.add(visinho);
     				arvoreLargura.add(this.acharAresta(current, visinho));
     			}
     		}
@@ -234,7 +205,44 @@ public class Grafo {
     	}
     	
     	return arvoreLargura;
-	}
+    }
+    
+    // public	ArrayList<Aresta> buscaEmLargura(String raiz, String buscado){
+
+    // 	ArrayList<Aresta> arvoreLargura = new ArrayList<Aresta>(); 
+    	
+    // 	Vertice v = this.acharVertice(raiz);
+	// 	v.setVisitado(true);
+		
+    // 	LinkedList<Vertice> borda= new LinkedList<Vertice>();
+    // 	borda.add(v);
+    // 	boolean achou = false;
+    // 	while (borda.size() > 0) {
+	// 		Vertice current = borda.remove();
+    // 		// current.setCor("preto");
+    // 		if (current.getNome().equals(buscado)) {
+    //             achou = true;
+    //             current.setVisitado(true);
+    // 			break;
+    // 		}
+    		
+    // 		for (Vertice visinho:current.getVizinhos()) {
+	// 			if(visinho.getCor().equals("branco")){
+	// 				visinho.setCor("cinza");
+	// 				borda.add(visinho);
+	// 				arvoreLargura.add(this.acharAresta(current, visinho));
+	// 			}
+	// 		}
+    // 	}
+    	
+    // 	if (achou) {
+    // 		System.out.println("Vertice encontrado");
+    // 	} else {
+    // 		System.out.println("Vertice nao encontrado");
+    // 	}
+    	
+    // 	return arvoreLargura;
+	// }
 	//------------------BUSCA-EM-PROFUNDIDADE----------------------------------
     
     //metodo que chama a busca recursiva em profundidade e retorna a arvore da busca em profundidade
