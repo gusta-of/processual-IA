@@ -12,7 +12,11 @@ public class Vertice {
     private ArrayList<Vertice> filhos = new ArrayList<Vertice>();
     private ArrayList<Vertice> vizinhos = new ArrayList<Vertice>();
     private boolean visitado = false;
-
+    private String cor = "branco"; 
+    
+	public Vertice(String nome){
+        this.nome = nome;
+    }
     public Vertice(String nome
     , Vertice... pai
     ){
@@ -25,6 +29,13 @@ public class Vertice {
             this.pai = this;
         }
     }
+	public String getCor() {
+		return cor;
+	}
+
+	public void setCor(String cor) {
+		this.cor = cor;
+	}
 
     public String getNome() {
         return nome;

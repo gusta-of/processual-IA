@@ -56,9 +56,9 @@ public class Aresta {
     // }
     @Override
 	public String toString() {
-		String s = " ";
+		String s = " \n";
         s+= 
-        this.getOrigem().getNome() + 
+        this.getOrigem().getNome() + " -> " +
         this.getDestino().getNome();
 		return s;
 	}
