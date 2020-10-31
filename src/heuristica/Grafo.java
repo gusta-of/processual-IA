@@ -32,6 +32,10 @@ public class Grafo {
 			}
 		}
 	}
+	
+	public List<Vertice> getCidades() {
+		return this.cidades;
+	}
 
 //	BUSCA GULOSA
 	public void buscaGulosa(Vertice origem) {
@@ -42,10 +46,6 @@ public class Grafo {
 
 	public List<Vertice> retornoCaminho() {
 		return caminho;
-	}
-
-	public List<Vertice> getCidades() {
-		return this.cidades;
 	}
 
 	private Vertice buscaGulosaRecursao(Vertice vertive) {

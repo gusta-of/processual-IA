@@ -27,6 +27,6 @@ public class Timer {
 	public void finalize() {
 		
 		fimMili = System.currentTimeMillis() - inicioMili;
-		System.out.println("DEMOROU:: " + fimMili + "ms");
+		System.out.println("TEMPO DE EXECUÇÃO: " + fimMili + "ms");
 	}
 }
