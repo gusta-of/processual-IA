@@ -26,8 +26,7 @@ public class Main {
 		timer.finalize();
 		
 		long memoryl = runtimel.totalMemory() - runtimel.freeMemory();
-        System.out.println("bytes: " + memoryl);
-        System.out.println("megabytes: "
+		System.out.println("COMPLEXIDADE DE ESPAÇO: " + "bytes: " + memoryl + "  megabytes: "
                 + bytesToMegabytes(memoryl));
 		
 		System.out.println("______________________________Busca de Profundidade________________________________");
@@ -41,8 +40,7 @@ public class Main {
 		timer.finalize();
 		
 		long memoryp = runtimep.totalMemory() - runtimep.freeMemory();
-        System.out.println("bytes: " + memoryp);
-        System.out.println("megabytes: "
+		System.out.println("COMPLEXIDADE DE ESPAÇO: " + "bytes: " + memoryp + "  megabytes: "
                 + bytesToMegabytes(memoryp));
 	
 		System.out.println("______________________________Busca de Gulosa________________________________");
@@ -56,8 +54,7 @@ public class Main {
 		timer.finalize();
 		
 		long memoryg = runtimep.totalMemory() - runtimeg.freeMemory();
-        System.out.println("bytes: " + memoryg);
-        System.out.println("megabytes: "
+		System.out.println("COMPLEXIDADE DE ESPAÇO: " + "bytes: " + memoryg + "  megabytes: "
                 + bytesToMegabytes(memoryg));
 //
 		System.out.println("______________________________Busca de A*________________________________");
@@ -71,8 +68,8 @@ public class Main {
 		timer.finalize();
 		
 		long memory = runtime.totalMemory() - runtime.freeMemory();
-        System.out.println("bytes: " + memory);
-        System.out.println("megabytes: "
+		
+		System.out.println("COMPLEXIDADE DE ESPAÇO: " + "bytes: " + memory + "  megabytes: "
                 + bytesToMegabytes(memory));
 
 	}
