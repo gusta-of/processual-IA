@@ -1,9 +1,13 @@
 package grafo;
 // https://github.com/mario-martins-ifood/algoritmos.grafos
+
+import java.util.ArrayList;
+
 public class Aresta {
     private int peso;
     private Vertice origem;
     private Vertice destino;
+    // private ArrayList<Vertice> vertices; 
     private boolean visitado = false;
 
 

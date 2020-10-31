@@ -271,13 +271,13 @@ public class Grafo {
     	this.vertices.get(posRaiz).setVisitado(true);
 		
     	if (!raiz.equals(buscado)){
-    		for(int i=0; i<this.vertices.get(posRaiz).getVizinhos().size();i++){
+    		for(int i=0; i<this.vertices.get(posRaiz).getFilhos().size();i++){
     			
-    			if (!this.vertices.get(posRaiz).getVizinhos().get(i).isVisitado()){
+    			if (!this.vertices.get(posRaiz).getFilhos().get(i).isVisitado()){
 	    			//acha aresta entre eles e seta como visitada
-	    			this.acharAresta(this.vertices.get(posRaiz), this.vertices.get(posRaiz).getVizinhos().get(i)).setVisitado(true);
+	    			this.acharAresta(this.vertices.get(posRaiz), this.vertices.get(posRaiz).getFilhos().get(i)).setVisitado(true);
 	    			//continua busca recursivamente
-	    			if (this.buscaRecursiva(this.vertices.get(posRaiz).getVizinhos().get(i).getNome(),buscado))
+	    			if (this.buscaRecursiva(this.vertices.get(posRaiz).getFilhos().get(i).getNome(),buscado))
 	    				return true;
 	    		}
 	    	}
