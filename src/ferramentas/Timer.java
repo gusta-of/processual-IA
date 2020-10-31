@@ -4,16 +4,16 @@ import java.time.Duration;
 import java.time.Instant;
 
 public class Timer {
-	private Instant inicio; 
-	private Instant fim; 
+	private Instant inicio;
+	private Instant fim;
 	
 	public void inicieContador() {
 		inicio = Instant.now();
 	}
 	
-	public String encerreContador() {
+	public void encerreContador() {
 		fim = Instant.now();
 		Duration duracao = Duration.between(inicio, fim);
-		return duracao.getSeconds()+","+duracao.getNano();
+		System.out.println("Tempo de execução: "+duracao.getSeconds()+","+duracao.getNano());
 	}
 }
