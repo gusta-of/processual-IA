@@ -75,8 +75,7 @@ public class Grafo {
 
 	private List<Vertice> aberta = new ArrayList<Vertice>();
 	private List<Vertice> fechada = new ArrayList<Vertice>();
-	private Map<Vertice, Integer> mapa1 = new HashMap<Vertice, Integer>();
-	private Map<Vertice, Integer> mapa2 = new HashMap<Vertice, Integer>();
+	private Map<Vertice, Integer> mapa1;
 
 	public List<Vertice> retornaCaminhoAestrela() {
 		return fechada;
@@ -93,7 +92,14 @@ public class Grafo {
 		buscaAestrelaRecurcao(aberta);
 	}
 
-	private Vertice buscaAestrelaRecurcao(List<Vertice> vertices) {
+	private void buscaAestrelaRecurcao(List<Vertice> vertices) {
+		
+		mapa1 = new HashMap<Vertice, Integer>();
+		
+		if (vertices.get(0).Heuristica == 0) {
+			fechada.add(vertices.get(0));
+			return;
+		}
 		
 		vertices.get(0).Arestas.forEach(n -> {
 			mapa1.put(n.destino, n.custo + n.destino.Heuristica);
@@ -105,8 +111,6 @@ public class Grafo {
 				.sorted(Map.Entry.comparingByValue())
 				.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
 		
-		mapaOrdenado.forEach((key, value) -> System.out.println(value + " - " + key));
-		
 		fechada.add(aberta.get(0));
 		aberta.clear();
 		
@@ -114,11 +118,7 @@ public class Grafo {
 			aberta.add(key);
 		});
 		
-		return null;
-	}
-
-	private int calculaHeiristicaTotal(Aresta aresta, Vertice vertice) {
-		return aresta.custo + vertice.Heuristica;
+		buscaAestrelaRecurcao(aberta);
 	}
 
 }

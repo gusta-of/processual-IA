@@ -17,7 +17,8 @@ public class Main {
 //		grafo.buscaGulosa(grafo.Eforie);
 //		System.out.println(grafo.retornoCaminho());
 		
-		grafo.buscaAestrela(grafo.Arad);
+		grafo.buscaAestrela(grafo.Fagaras);
+		System.out.println(grafo.retornaCaminhoAestrela());
 
 //        grafo.imprimaRotas();
 
