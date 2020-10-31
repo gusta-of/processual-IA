@@ -123,24 +123,82 @@ public class Grafo {
 
 	private ArrayList<Vertice> caminhoLargura = new ArrayList<Vertice>();
 	private ArrayList<Vertice> aux = new ArrayList<Vertice>();
+	
 	public ArrayList<Vertice> buscaEmLargura(Vertice origem,Vertice destino) {
 		aux.add(origem);
 		buscaEmLarguraRecursao(aux, destino);
 		return caminhoLargura;
 	}
 	public void buscaEmLarguraRecursao(ArrayList<Vertice> aux, Vertice destino) {
-		
-		aux.get(0).Arestas.forEach(n -> {
-            aux.add(n.destino);
-		});
 		if(aux.get(0).Nome.equals(destino.Nome)){
 			caminhoLargura.add(aux.get(0));
+			System.out.println(caminhoLargura);
 			return;
 		}
-		
-		caminhoLargura.add(aux.get(0));
-		aux.remove(0);
+		aux.get(0).Arestas.forEach(n -> {
+			if(!n.destino.isVisitado()){
+				aux.add(n.destino);
+			}
+		});
+		aux.get(0).setVisitado(true);
+		caminhoLargura.add(aux.remove(0));
+		System.out.println(caminhoLargura);
 		buscaEmLarguraRecursao(aux, destino);
+	}
+
+	private ArrayList<Vertice> caminhoProfundidade = new ArrayList<Vertice>();
+  	//metodo que chama a busca recursiva em profundidade e retorna a arvore da busca em profundidade
+  	public	ArrayList<Vertice> buscaEmProfundidade(Vertice origem, Vertice destino){
+		aux.clear();
+		aux.add(origem);
+		buscaProfundidadeRecursiva(origem, destino);
+		
+		// for (int i=0; i<this.arestas.size(); i++){
+		// 	if(this.arestas.get(i).isVisitado())
+		// 		arvoreProfundidade.azdd(this.arestas.get(i));
+		// }
+		
+		return caminhoProfundidade;
+	}
+
+	public void buscaProfundidadeRecursiva(Vertice raiz, Vertice buscado){
+		Vertice vAux = aux.remove(0);
+		if(raiz.Nome.equals(buscado.Nome)){
+			caminhoProfundidade.add(raiz);
+			return;
+		}
+		if(vAux.Nome.equals(buscado.Nome)){
+			caminhoProfundidade.add(vAux);
+			System.out.println(caminhoProfundidade);
+			return;
+		}
+		vAux.Arestas.forEach(n -> {
+			if(!n.destino.isVisitado()){
+				aux.add(n.destino);
+			}
+		});
+		
+		aux.get(0).setVisitado(true);
+		
+		
+		buscaProfundidadeRecursiva(vAux,buscado);
+		// this.vertices.get(posRaiz).setVisitado(true);
+		
+		// if (!raiz.equals(buscado)){
+		// 	for(int i=0; i<this.vertices.get(posRaiz).getFilhos().size();i++){
+				
+		// 		if (!this.vertices.get(posRaiz).getFilhos().get(i).isVisitado()){
+		// 			//acha aresta entre eles e seta como visitada
+		// 			this.acharAresta(this.vertices.get(posRaiz), this.vertices.get(posRaiz).getFilhos().get(i)).setVisitado(true);
+		// 			//continua busca recursivamente
+		// 			if (this.buscaRecursiva(this.vertices.get(posRaiz).getFilhos().get(i).getNome(),buscado))
+		// 				return true;
+		// 		}
+		// 	}
+		// }else{
+		// 	return true;
+		// }
+		// return false;
 	}
 
 }

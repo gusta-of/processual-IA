@@ -15,8 +15,11 @@ public class Main {
 
 	
 		System.out.println("______________________________Busca de Largura________________________________");
+		grafo.buscaEmLargura(grafo.Arad, grafo.Bucareste);
 		
-		System.out.println(grafo.buscaEmLargura(grafo.Arad, grafo.Bucareste));
+		System.out.println("______________________________Busca de Profundidade________________________________");
+		grafo.buscaEmProfundidade(grafo.Arad, grafo.Bucareste);
+
 		// System.out.println("___________________________Grafo busca Gulosa e A*_____________________________");
 		// // GrafoCidades grafo = Heuristica();
 		// grafo.imprimaRotas();
