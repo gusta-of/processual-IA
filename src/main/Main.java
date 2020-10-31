@@ -14,8 +14,10 @@ public class Main {
 
 		GrafoCidades grafo = Heuristica();
 
-		grafo.buscaGulosa(grafo.Neamt.Nome);
-		System.out.println(grafo.retornoCaminho());
+//		grafo.buscaGulosa(grafo.Arad);
+//		System.out.println(grafo.retornoCaminho());
+		
+		grafo.buscaAestrela(grafo.Arad);
 
 //        grafo.imprimaRotas();
 //        
