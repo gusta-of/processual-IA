@@ -27,9 +27,9 @@ public class Grafo {
 
 	public void imprimaRotas() {
 		for (Vertice vertice : cidades) {
-			System.out.println("Nó pai " + vertice.Nome);
+			System.out.println("Nï¿½ pai " + vertice.Nome);
 			for (Aresta aresta : vertice.Arestas) {
-				System.out.println("    Nó filho: " + aresta.destino.Nome);
+				System.out.println("    Nï¿½ filho: " + aresta.destino.Nome);
 			}
 		}
 	}
@@ -119,6 +119,28 @@ public class Grafo {
 		});
 		
 		buscaAestrelaRecurcao(aberta);
+	}
+
+	private ArrayList<Vertice> caminhoLargura = new ArrayList<Vertice>();
+	private ArrayList<Vertice> aux = new ArrayList<Vertice>();
+	public ArrayList<Vertice> buscaEmLargura(Vertice origem,Vertice destino) {
+		aux.add(origem);
+		buscaEmLarguraRecursao(aux, destino);
+		return caminhoLargura;
+	}
+	public void buscaEmLarguraRecursao(ArrayList<Vertice> aux, Vertice destino) {
+		
+		aux.get(0).Arestas.forEach(n -> {
+            aux.add(n.destino);
+		});
+		if(aux.get(0).Nome.equals(destino.Nome)){
+			caminhoLargura.add(aux.get(0));
+			return;
+		}
+		
+		caminhoLargura.add(aux.get(0));
+		aux.remove(0);
+		buscaEmLarguraRecursao(aux, destino);
 	}
 
 }

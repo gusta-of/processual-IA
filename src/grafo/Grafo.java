@@ -168,9 +168,9 @@ public class Grafo {
     
 
 	// implementacao original
-	public	ArrayList<Aresta> buscaEmLargura(String raiz, String buscado){
+	public	ArrayList<Vertice> buscaEmLargura(String raiz, String buscado){
 
-    	ArrayList<Aresta> arvoreLargura = new ArrayList<Aresta>(); 
+    	ArrayList<Vertice> arvoreLargura = new ArrayList<Vertice>(); 
     	for (Vertice v:this.vertices) {
     		v.setCor("branco");
     	}
@@ -193,7 +193,7 @@ public class Grafo {
     			if(visinho.getCor().equals("branco")){
     				visinho.setCor("cinza");
     				queue.add(visinho);
-    				arvoreLargura.add(this.acharAresta(current, visinho));
+    				arvoreLargura.add(visinho);
     			}
     		}
     	}
