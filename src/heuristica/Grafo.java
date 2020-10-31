@@ -6,6 +6,7 @@ import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Stack;
 import java.util.stream.Collectors;
 
 public class Grafo {
@@ -42,7 +43,7 @@ public class Grafo {
 	public List<Vertice> retornoCaminho() {
 		return caminho;
 	}
-	
+
 	public List<Vertice> getCidades() {
 		return this.cidades;
 	}
@@ -82,59 +83,57 @@ public class Grafo {
 	public void buscaAestrela(Vertice origem) {
 
 		aberta.add(origem);
-		
+
 		origem.Arestas.forEach(n -> {
 			aberta.add(n.destino);
 		});
-		
+
 		buscaAestrelaRecurcao(aberta);
 	}
 
 	private void buscaAestrelaRecurcao(List<Vertice> vertices) {
-		
+
 		mapa1 = new HashMap<Vertice, Integer>();
-		
+
 		if (vertices.get(0).Heuristica == 0) {
 			fechada.add(vertices.get(0));
 			return;
 		}
-		
+
 		vertices.get(0).Arestas.forEach(n -> {
 			mapa1.put(n.destino, n.custo + n.destino.Heuristica);
 		});
-		
-		
-		Map<Vertice, Integer> mapaOrdenado = mapa1.entrySet()
-				.stream()
-				.sorted(Map.Entry.comparingByValue())
+
+		Map<Vertice, Integer> mapaOrdenado = mapa1.entrySet().stream().sorted(Map.Entry.comparingByValue())
 				.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
-		
+
 		fechada.add(aberta.get(0));
 		aberta.clear();
-		
+
 		mapaOrdenado.forEach((key, value) -> {
 			aberta.add(key);
 		});
-		
+
 		buscaAestrelaRecurcao(aberta);
 	}
 
 	private ArrayList<Vertice> caminhoLargura = new ArrayList<Vertice>();
 	private ArrayList<Vertice> aux = new ArrayList<Vertice>();
-	
-	public ArrayList<Vertice> buscaEmLargura(Vertice origem,Vertice destino) {
+
+	public ArrayList<Vertice> buscaEmLargura(Vertice origem, Vertice destino) {
 		aux.add(origem);
 		buscaEmLarguraRecursao(aux, destino);
 		return caminhoLargura;
 	}
+
 	public void buscaEmLarguraRecursao(ArrayList<Vertice> aux, Vertice destino) {
-		if(aux.get(0).Nome.equals(destino.Nome)){
+		if (aux.get(0).Nome.equals(destino.Nome)) {
 			caminhoLargura.add(aux.get(0));
 			System.out.println(caminhoLargura);
 			return;
 		}
 		aux.get(0).Arestas.forEach(n -> {
-			if(!n.destino.isVisitado()){
+			if (!n.destino.isVisitado()) {
 				aux.add(n.destino);
 			}
 		});
@@ -144,33 +143,26 @@ public class Grafo {
 		buscaEmLarguraRecursao(aux, destino);
 	}
 
-	private ArrayList<Vertice> caminhoProfundidade = new ArrayList<Vertice>();
-  	public	ArrayList<Vertice> buscaEmProfundidade(Vertice origem, Vertice destino){
-		aux.clear();
-		aux.add(origem);
-		buscaProfundidadeRecursiva(origem, destino);	
-	
-		return caminhoProfundidade;
+	private Stack<Vertice> pilha = new Stack<Vertice>();
+	public void buscaEmProfundidade(Vertice origem, Vertice destino) {
+		
+		pilha.push(origem);
+		buscaProfundidadeRecursiva(origem, destino);
 	}
-
-	public void buscaProfundidadeRecursiva(Vertice raiz, Vertice buscado){
+	
+	
+	public Stack<Vertice> buscaProfundidadeRecursiva(Vertice raiz, Vertice buscado) {
 		
-		aux.get(0).setVisitado(true);
-		caminhoProfundidade.add(aux.get(0));
+		if (raiz.Nome.equals(buscado.Nome))
+			return pilha;
 		
-		Vertice vAux = aux.remove(0);
-		if(raiz.Nome.equals(buscado.Nome)){
-			System.out.println("Achou o Nó: " + raiz + " : " + caminhoProfundidade);
-			return;
-		}
-		
-		vAux.Arestas.forEach(n -> {
-			if(!n.destino.isVisitado()) {
-				aux.add(n.destino);
-			}
+		raiz.setVisitado(true);
+		Vertice vAux = pilha.pop();
+		raiz.Arestas.forEach(n -> {
+			
 		});
 		
-		buscaProfundidadeRecursiva(vAux, buscado);
+		return null;
 	}
 
 }
