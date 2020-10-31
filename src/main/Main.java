@@ -1,32 +1,46 @@
 package main;
 
+import ferramentas.Timer;
 import problema.rotas.GrafoCidades;
 
 public class Main {
 
 	public static void main(String[] args) {
 		
+		Timer timer = new Timer();
+		
 		System.out.println("___________________________GRAFO_____________________________");
 		GrafoCidades grafo = Heuristica();
-		// grafo.imprimaRotas();
+		grafo.imprimaRotas();
 		
-		// System.out.println("####__________________________BUSCAS____________________________________#####");
-		// System.out.println("");
-		// System.out.println("______________________________Busca de Largura________________________________");
-		// GrafoCidades grafo1 = Heuristica();
-		// grafo1.buscaEmLargura(grafo1.Arad, grafo1.Bucareste);
-
+		System.out.println("####__________________________BUSCAS____________________________________#####");
+		System.out.println("");
+		System.out.println("______________________________Busca de Largura________________________________");
+		
+		
+		GrafoCidades grafo1 = Heuristica();
+		timer.iniciarContadorMiliSeconds();
+		grafo1.buscaEmLargura(grafo1.Arad, grafo1.Bucareste);
+		timer.finalize();
+		
 		System.out.println("______________________________Busca de Profundidade________________________________");
 		GrafoCidades grafo2 = Heuristica();
+		timer.iniciarContadorMiliSeconds();
 		grafo2.buscaEmProfundidade(grafo2.Arad, grafo2.Bucareste);
+		timer.finalize();
 	
-		// System.out.println("______________________________Busca de Gulosa________________________________");
-		// grafo.buscaGulosa(grafo.Arad);
-		// System.out.println("CAMINHO ï¿½TIMO: " + grafo.retornoCaminho());
+		System.out.println("______________________________Busca de Gulosa________________________________");
+		timer.iniciarContadorMiliSeconds();
+		grafo.buscaGulosa(grafo.Arad);
+		System.out.println("CAMINHO ÓTIMO: " + grafo.retornoCaminho());
+		timer.finalize();
 
-		// System.out.println("______________________________Busca de A*________________________________");
-		// grafo.buscaAestrela(grafo.Arad);
-		// System.out.println("CAMINHO ï¿½TIMO: " + grafo.retornaCaminhoAestrela());
+		System.out.println("______________________________Busca de A*________________________________");
+		
+		timer.iniciarContadorMiliSeconds();
+		grafo.buscaAestrela(grafo.Arad);
+		System.out.println("CAMINHO ÓTIMO: " + grafo.retornaCaminhoAestrela());
+		timer.finalize();
 
 	}
 

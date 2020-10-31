@@ -26,9 +26,9 @@ public class Grafo {
 
 	public void imprimaRotas() {
 		for (Vertice vertice : cidades) {
-			System.out.println("Nï¿½ pai " + vertice.Nome);
+			System.out.println("NÓ pai " + vertice.Nome);
 			for (Aresta aresta : vertice.Arestas) {
-				System.out.println("    Nï¿½ filho: " + aresta.destino.Nome);
+				System.out.println("    NÓ filho: " + aresta.destino.Nome);
 			}
 		}
 	}
