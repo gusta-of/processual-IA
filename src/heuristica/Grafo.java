@@ -26,9 +26,9 @@ public class Grafo {
 
 	public void imprimaRotas() {
 		for (Vertice vertice : cidades) {
-			System.out.println("NÓ pai " + vertice.Nome);
+			System.out.println("Nï¿½ pai " + vertice.Nome);
 			for (Aresta aresta : vertice.Arestas) {
-				System.out.println("    NÓ filho: " + aresta.destino.Nome);
+				System.out.println("    Nï¿½ filho: " + aresta.destino.Nome);
 			}
 		}
 	}
@@ -144,25 +144,30 @@ public class Grafo {
 	}
 
 	private Stack<Vertice> pilha = new Stack<Vertice>();
+	private ArrayList<Vertice> caminhoProfundidade = new ArrayList<Vertice>();
+	
 	public void buscaEmProfundidade(Vertice origem, Vertice destino) {
-		
 		pilha.push(origem);
 		buscaProfundidadeRecursiva(origem, destino);
+		System.out.println("Destino: "+destino+" | Caminho: "+caminhoProfundidade);
 	}
 	
 	
-	public Stack<Vertice> buscaProfundidadeRecursiva(Vertice raiz, Vertice buscado) {
-		
-		if (raiz.Nome.equals(buscado.Nome))
+	public Stack<Vertice> buscaProfundidadeRecursiva(Vertice origem, Vertice buscado) {
+		if (origem.Nome.equals(buscado.Nome)){
 			return pilha;
-		
-		raiz.setVisitado(true);
+		}
+		origem.setVisitado(true);
 		Vertice vAux = pilha.pop();
-		raiz.Arestas.forEach(n -> {
-			
+		caminhoProfundidade.add(vAux);
+		vAux.Arestas.forEach(n -> {
+			if(!n.destino.Nome.equals(vAux.Nome)){
+				if(!n.destino.isVisitado()){
+					pilha.push(n.destino);
+				}
+			}
 		});
-		
-		return null;
+		return buscaProfundidadeRecursiva(vAux,buscado);
 	}
 
 }
