@@ -1,4 +1,4 @@
-package estrutura.dados;
+package heuristica;
 
 import java.util.LinkedList;
 

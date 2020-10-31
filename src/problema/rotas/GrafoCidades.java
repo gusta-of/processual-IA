@@ -2,31 +2,32 @@ package problema.rotas;
 
 import java.util.LinkedList;
 
-import estrutura.dados.Grafo;
-import estrutura.dados.Vertice;
+import heuristica.Grafo;
+import heuristica.Vertice;
 
 public class GrafoCidades extends Grafo {
 	
-	public Vertice Oradea = new Vertice("Oradea");
-	public Vertice Zerind = new Vertice("Zerind");
-	public Vertice Arad = new Vertice("Arad");
-	public Vertice Timisoara = new Vertice("Timisoara");
-	public Vertice Lugoj= new Vertice("Lugoj");
-	public Vertice Mehadia= new Vertice("Mehadia");
-	public Vertice Drobeta = new Vertice("Drobeta");
-	public Vertice Sibiu = new Vertice("Sibiu");
-	public Vertice Rimnicu = new Vertice("Rimnicu");
-	public Vertice Craiova = new Vertice("Craiova");
-	public Vertice Fagaras = new Vertice("Fagaras");
-	public Vertice Pitesti = new Vertice("Pitesti");
-	public Vertice Bucareste = new Vertice("Bucareste");
-	public Vertice Giurgiu = new Vertice("Giurgiu");
-	public Vertice Neamt = new Vertice("Neamt");
-	public Vertice Iasi = new Vertice("Iasi");
-	public Vertice Vaslui = new Vertice("Vaslui");
-	public Vertice Urziceni = new Vertice("Urziceni");
-	public Vertice Hirsova = new Vertice("Hirsova");
-	public Vertice Eforie = new Vertice("Eforie");
+	
+	public Vertice Arad = new Vertice("Arad", 366);
+	public Vertice Bucareste = new Vertice("Bucareste", 0);
+	public Vertice Craiova = new Vertice("Craiova", 160);
+	public Vertice Drobeta = new Vertice("Drobeta", 242);
+	public Vertice Eforie = new Vertice("Eforie", 161);
+	public Vertice Fagaras = new Vertice("Fagaras", 178);
+	public Vertice Giurgiu = new Vertice("Giurgiu", 77);
+	public Vertice Hirsova = new Vertice("Hirsova", 151);
+	public Vertice Iasi = new Vertice("Iasi", 226);
+	public Vertice Lugoj= new Vertice("Lugoj", 244);
+	public Vertice Mehadia= new Vertice("Mehadia", 241);
+	public Vertice Neamt = new Vertice("Neamt", 234);
+	public Vertice Oradea = new Vertice("Oradea", 380);
+	public Vertice Pitesti = new Vertice("Pitesti", 98);
+	public Vertice Rimnicu = new Vertice("Rimnicu Vilcea", 193);
+	public Vertice Sibiu = new Vertice("Sibiu", 253);
+	public Vertice Timisoara = new Vertice("Timisoara", 329);
+	public Vertice Urziceni = new Vertice("Urziceni", 80);
+	public Vertice Vaslui = new Vertice("Vaslui", 199);
+	public Vertice Zerind = new Vertice("Zerind", 374);
 	
 	public GrafoCidades() {
 		super();
