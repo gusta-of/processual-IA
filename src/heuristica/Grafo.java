@@ -2,8 +2,13 @@ package heuristica;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Dictionary;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Grafo {
 
@@ -39,10 +44,14 @@ public class Grafo {
 	public List<Vertice> retornoCaminho() {
 		return caminho;
 	}
+	
+	public List<Vertice> getCidades() {
+		return this.cidades;
+	}
 
 	private Vertice buscaGulosaRecursao(Vertice vertive) {
 
-		if (vertive.Heiristica == 0)
+		if (vertive.Heuristica == 0)
 			return vertive;
 
 		Vertice vert = null;
@@ -52,7 +61,7 @@ public class Grafo {
 				continue;
 			}
 
-			if (vert.Heiristica > aresta.destino.Heiristica) {
+			if (vert.Heuristica > aresta.destino.Heuristica) {
 				vert = aresta.destino;
 			}
 		}
@@ -66,7 +75,8 @@ public class Grafo {
 
 	private List<Vertice> aberta = new ArrayList<Vertice>();
 	private List<Vertice> fechada = new ArrayList<Vertice>();
-	private List<Vertice> auxiliar = new ArrayList<Vertice>();
+	private Map<Vertice, Integer> mapa1 = new HashMap<Vertice, Integer>();
+	private Map<Vertice, Integer> mapa2 = new HashMap<Vertice, Integer>();
 
 	public List<Vertice> retornaCaminhoAestrela() {
 		return fechada;
@@ -74,26 +84,41 @@ public class Grafo {
 
 	public void buscaAestrela(Vertice origem) {
 
-		if (origem.isObjetivo()) {
-			fechada.add(origem);
-			return;
-		} else {
-			fechada.add(origem);
-			origem.Arestas.forEach(a -> {
-				aberta.add(a.destino);
-			});
-		}
+		aberta.add(origem);
 		
-		fechada.add(buscaAestrelaRecurcao(aberta));
+		origem.Arestas.forEach(n -> {
+			aberta.add(n.destino);
+		});
+		
+		buscaAestrelaRecurcao(aberta);
 	}
 
 	private Vertice buscaAestrelaRecurcao(List<Vertice> vertices) {
-
+		
+		vertices.get(0).Arestas.forEach(n -> {
+			mapa1.put(n.destino, n.custo + n.destino.Heuristica);
+		});
+		
+		
+		Map<Vertice, Integer> mapaOrdenado = mapa1.entrySet()
+				.stream()
+				.sorted(Map.Entry.comparingByValue())
+				.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
+		
+		mapaOrdenado.forEach((key, value) -> System.out.println(value + " - " + key));
+		
+		fechada.add(aberta.get(0));
+		aberta.clear();
+		
+		mapaOrdenado.forEach((key, value) -> {
+			aberta.add(key);
+		});
+		
 		return null;
 	}
 
 	private int calculaHeiristicaTotal(Aresta aresta, Vertice vertice) {
-		return aresta.custo + vertice.Heiristica;
+		return aresta.custo + vertice.Heuristica;
 	}
 
 }

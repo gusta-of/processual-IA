@@ -7,18 +7,18 @@ import java.util.List;
 public class Vertice {
 	public String Nome;
 	public List<Aresta> Arestas;
-	public int Heiristica;
+	public int Heuristica;
 	private boolean visitado = false;
-	
+
 	public Vertice(String nome) {
 		this.Nome = nome;
 		this.Arestas = new ArrayList<Aresta>();
 	}
-	
+
 	public Vertice(String nome, int heiristica) {
 		this.Nome = nome;
 		this.Arestas = new LinkedList<Aresta>();
-		this.Heiristica = heiristica;
+		this.Heuristica = heiristica;
 	}
 
 	public boolean isVisitado() {
@@ -28,14 +28,14 @@ public class Vertice {
 	public void setVisitado(boolean visitado) {
 		this.visitado = visitado;
 	}
-	
+
 	public boolean isObjetivo() {
-		return this.Heiristica == 0;
+		return this.Heuristica == 0;
 	}
 	
 	@Override
-    public String toString() {
-        return this.Nome;
-    }
-	
+	public String toString() {
+		return this.Nome;
+	}
+
 }

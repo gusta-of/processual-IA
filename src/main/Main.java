@@ -14,13 +14,13 @@ public class Main {
 
 		GrafoCidades grafo = Heuristica();
 
-//		grafo.buscaGulosa(grafo.Arad);
+//		grafo.buscaGulosa(grafo.Eforie);
 //		System.out.println(grafo.retornoCaminho());
 		
 		grafo.buscaAestrela(grafo.Arad);
 
 //        grafo.imprimaRotas();
-//        
+
 //        System.out.println("______________________________Busca de Largura e profundidade________________________________");
 //        
 //        BuscaLarguraProfundidade();

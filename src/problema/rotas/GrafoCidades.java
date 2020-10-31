@@ -33,25 +33,25 @@ public class GrafoCidades extends Grafo {
 		super();
 		cidades = new LinkedList<Vertice>();
 		
-		cidades.add(Oradea);
-		cidades.add(Zerind);
 		cidades.add(Arad);
-		cidades.add(Timisoara);
+		cidades.add(Bucareste);
+		cidades.add(Craiova);
+		cidades.add(Drobeta);
+		cidades.add(Eforie);
+		cidades.add(Fagaras);
+		cidades.add(Giurgiu);
+		cidades.add(Hirsova);
+		cidades.add(Iasi);
 		cidades.add(Lugoj);
 		cidades.add(Mehadia);
-		cidades.add(Drobeta);
-		cidades.add(Sibiu);
-		cidades.add(Rimnicu);
-		cidades.add(Craiova);
-		cidades.add(Fagaras);
-		cidades.add(Pitesti);
-		cidades.add(Bucareste);
-		cidades.add(Giurgiu);
 		cidades.add(Neamt);
-		cidades.add(Iasi);
-		cidades.add(Vaslui);
+		cidades.add(Oradea);
+		cidades.add(Pitesti);
+		cidades.add(Rimnicu);
+		cidades.add(Sibiu);
+		cidades.add(Timisoara);
 		cidades.add(Urziceni);
-		cidades.add(Hirsova);
-		cidades.add(Eforie);
+		cidades.add(Vaslui);
+		cidades.add(Zerind);
 	}
 }
