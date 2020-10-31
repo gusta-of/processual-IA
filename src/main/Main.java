@@ -12,19 +12,22 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		GrafoCidades grafo = Heuristica();
-
-//		grafo.buscaGulosa(grafo.Eforie);
-//		System.out.println(grafo.retornoCaminho());
 		
-		grafo.buscaAestrela(grafo.Fagaras);
-		System.out.println(grafo.retornaCaminhoAestrela());
+		System.out.println("______________________________Busca de Largura e profundidade________________________________");
+		BuscaLarguraProfundidade();
 
-//        grafo.imprimaRotas();
 
-//        System.out.println("______________________________Busca de Largura e profundidade________________________________");
-//        
-//        BuscaLarguraProfundidade();
+		System.out.println("___________________________Grafo busca Gulosa e A*_____________________________");
+		GrafoCidades grafo = Heuristica();
+		grafo.imprimaRotas();
+		
+		System.out.println("______________________________Busca de Gulosa e A*________________________________");
+		grafo.buscaGulosa(grafo.Arad);
+		System.out.println("GULOSA: " + grafo.retornoCaminho());
+
+		grafo.buscaAestrela(grafo.Arad);
+		System.out.println("A*: " + grafo.retornaCaminhoAestrela());
+
 	}
 
 	public static GrafoCidades Heuristica() {
