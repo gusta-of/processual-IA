@@ -11,38 +11,75 @@ public class Main {
 		
 		System.out.println("___________________________GRAFO_____________________________");
 		GrafoCidades grafo = Heuristica();
-		grafo.imprimaRotas();
+//		grafo.imprimaRotas();
 		
 		System.out.println("####__________________________BUSCAS____________________________________#####");
 		System.out.println("");
 		System.out.println("______________________________Busca de Largura________________________________");
 		
-		
+		Runtime runtimel = Runtime.getRuntime();
+        runtimel.gc();
+        
 		GrafoCidades grafo1 = Heuristica();
 		timer.iniciarContadorMiliSeconds();
 		grafo1.buscaEmLargura(grafo1.Arad, grafo1.Bucareste);
 		timer.finalize();
 		
+		long memoryl = runtimel.totalMemory() - runtimel.freeMemory();
+		System.out.println("COMPLEXIDADE DE ESPAÇO: " + "bytes: " + memoryl + "  megabytes: "
+                + bytesToMegabytes(memoryl));
+		
 		System.out.println("______________________________Busca de Profundidade________________________________");
+		
+		Runtime runtimep = Runtime.getRuntime();
+        runtimep.gc();
+        
 		GrafoCidades grafo2 = Heuristica();
 		timer.iniciarContadorMiliSeconds();
 		grafo2.buscaEmProfundidade(grafo2.Arad, grafo2.Bucareste);
 		timer.finalize();
+		
+		long memoryp = runtimep.totalMemory() - runtimep.freeMemory();
+		System.out.println("COMPLEXIDADE DE ESPAÇO: " + "bytes: " + memoryp + "  megabytes: "
+                + bytesToMegabytes(memoryp));
 	
 		System.out.println("______________________________Busca de Gulosa________________________________");
+		
+		Runtime runtimeg = Runtime.getRuntime();
+        runtimeg.gc();
+        
 		timer.iniciarContadorMiliSeconds();
 		grafo.buscaGulosa(grafo.Arad);
 		System.out.println("CAMINHO ÓTIMO: " + grafo.retornoCaminho());
 		timer.finalize();
-
-		System.out.println("______________________________Busca de A*________________________________");
 		
+		long memoryg = runtimep.totalMemory() - runtimeg.freeMemory();
+		System.out.println("COMPLEXIDADE DE ESPAÇO: " + "bytes: " + memoryg + "  megabytes: "
+                + bytesToMegabytes(memoryg));
+//
+		System.out.println("______________________________Busca de A*________________________________");
+//		
+        Runtime runtime = Runtime.getRuntime();
+        runtime.gc();
+        
 		timer.iniciarContadorMiliSeconds();
 		grafo.buscaAestrela(grafo.Arad);
 		System.out.println("CAMINHO ÓTIMO: " + grafo.retornaCaminhoAestrela());
 		timer.finalize();
+		
+		long memory = runtime.totalMemory() - runtime.freeMemory();
+		
+		System.out.println("COMPLEXIDADE DE ESPAÇO: " + "bytes: " + memory + "  megabytes: "
+                + bytesToMegabytes(memory));
 
 	}
+	
+	private static final float MEGABYTE = 1024L * 1024L;
+
+    public static float bytesToMegabytes(float bytes) {
+    	float retorno = bytes / MEGABYTE;
+        return retorno;
+    }
 
 	public static GrafoCidades Heuristica() {
 		GrafoCidades rotas = new GrafoCidades();
